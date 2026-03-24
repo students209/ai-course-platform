@@ -22,8 +22,8 @@ export const courses: Course[] = [
         id: 'tech-004-ch2',
         title: '第2集：环境准备与安装',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/H_qIARle9Q',
-        openmaicId: 'H_qIARle9Q'
+        openmaicUrl: 'https://open.maic.chat/classroom/9n8ziaws4h',
+        openmaicId: '9n8ziaws4h'
       },
       {
         id: 'tech-004-ch3',
@@ -31,6 +31,34 @@ export const courses: Course[] = [
         duration: '20分钟',
         openmaicUrl: 'https://open.maic.chat/classroom/NZRvFZse3E',
         openmaicId: 'NZRvFZse3E'
+      },
+      {
+        id: 'tech-004-ch4',
+        title: '第4集：配置 AI 模型',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/sGmxyncFvz',
+        openmaicId: 'sGmxyncFvz'
+      },
+      {
+        id: 'tech-004-ch5',
+        title: '第5集：创建第一个任务',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/NEP5GXMKeQ',
+        openmaicId: 'NEP5GXMKeQ'
+      },
+      {
+        id: 'tech-004-ch6',
+        title: '第6集：首次对话测试',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/VHhFWS1fkr',
+        openmaicId: 'VHhFWS1fkr'
+      },
+      {
+        id: 'tech-004-ch7',
+        title: '第7集：7天学习路径总结',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/fOJzSAY0XP',
+        openmaicId: 'fOJzSAY0XP'
       }
     ],
     isFree: true,
