@@ -1,3 +1,11 @@
+export interface CourseChapter {
+  id: string;
+  title: string;
+  duration: string;
+  openmaicUrl: string;
+  openmaicId: string;
+}
+
 export interface Course {
   id: string;
   title: string;
@@ -5,10 +13,8 @@ export interface Course {
   coverImage: string;
   category: CourseCategory;
   tags: string[];
-  duration: string;
-  lessons: number;
-  openmaicUrl: string;
-  openmaicId: string;
+  totalDuration: string;      // 总时长
+  chapters: CourseChapter[];  // 章节列表
   isFree: boolean;
   createdAt: string;
   views: number;

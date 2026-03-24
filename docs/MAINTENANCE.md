@@ -1,256 +1,282 @@
-# 课程维护手册
+# 课程维护手册 v2.0
 
-## 📚 快速添加课程
+## 📚 课程结构说明
 
-### 方式1：编辑 courses.ts 文件
+### 一个课程 = 多个章节
 
-编辑 `src/data/courses.ts`，在 `courses` 数组中添加新课程：
+```
+课程卡片
+├── 第1集
+├── 第2集
+├── 第3集
+└── ...
+```
+
+**示例**：OpenClaw入门教程
+- 1个课程卡片
+- 7集视频（7个OpenMAIC链接）
+- 用户点击后可选择观看哪一集
+
+---
+
+## 🎯 快速添加课程
+
+### 编辑文件
+
+编辑 `src/data/courses.ts`
+
+### 单集课程（1个视频）
 
 ```typescript
 {
-  id: 'tech-002',                    // 唯一ID，格式：分类-序号
-  title: 'OpenClaw入门教程',          // 课程标题
-  description: '从零开始学习OpenClaw，掌握AI Agent开发技能',  // 课程描述
-  coverImage: 'https://xxx.jpg',      // 封面图片URL
-  category: 'tech',                   // 分类：insurance/law/medical/education/finance/tech
-  tags: ['OpenClaw', 'AI', 'Agent'],  // 标签数组
-  duration: '30分钟',                 // 课程时长
-  lessons: 10,                        // 课时数
-  openmaicUrl: 'https://open.maic.chat/classroom/xxx',  // OpenMAIC链接
-  openmaicId: 'xxx',                  // OpenMAIC ID（链接最后一段）
-  isFree: true,                       // 是否免费
-  createdAt: '2026-03-24',            // 创建日期
-  views: 0                            // 初始浏览量
+  id: 'tech-004',
+  title: '课程标题',
+  description: '课程描述',
+  coverImage: 'https://images.unsplash.com/photo-xxx?w=400',
+  category: 'tech',
+  tags: ['标签1', '标签2'],
+  totalDuration: '15分钟',
+  chapters: [
+    {
+      id: 'tech-004-ch1',
+      title: '第1集：课程标题',
+      duration: '15分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID',
+      openmaicId: 'YOUR_ID'
+    }
+  ],
+  isFree: true,
+  createdAt: '2026-03-24',
+  views: 0
 }
 ```
 
-### 方式2：使用脚本批量添加（推荐）
-
-创建 `scripts/add-course.ts`：
+### 多集课程（多个视频）
 
 ```typescript
-// 运行：npx ts-node scripts/add-course.ts
-
-const courses = [
-  {
-    id: 'tech-002',
-    title: 'OpenClaw基础入门',
-    // ...
-  }
-];
-
-console.log(JSON.stringify(courses, null, 2));
+{
+  id: 'tech-005',
+  title: 'Python入门教程',
+  description: '从零开始学习Python编程',
+  coverImage: 'https://images.unsplash.com/photo-xxx?w=400',
+  category: 'tech',
+  tags: ['Python', '编程', '入门'],
+  totalDuration: '2小时',
+  chapters: [
+    {
+      id: 'tech-005-ch1',
+      title: '第1集：Python简介与环境搭建',
+      duration: '20分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/ID1',
+      openmaicId: 'ID1'
+    },
+    {
+      id: 'tech-005-ch2',
+      title: '第2集：变量与数据类型',
+      duration: '25分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/ID2',
+      openmaicId: 'ID2'
+    },
+    {
+      id: 'tech-005-ch3',
+      title: '第3集：条件语句与循环',
+      duration: '30分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/ID3',
+      openmaicId: 'ID3'
+    },
+    // ... 更多章节
+  ],
+  isFree: false,
+  createdAt: '2026-03-24',
+  views: 0
+}
 ```
 
 ---
 
-## 📂 文件结构
+## 📝 字段说明
 
-```
-src/data/
-└── courses.ts          # 所有课程数据
-
-src/types/
-└── course.ts           # 类型定义
-
-src/app/
-├── course/[id]/page.tsx    # 课程详情页
-└── category/[category]/page.tsx  # 分类页面
-```
-
----
-
-## 🎯 分类维护
-
-### 现有分类
-
-| ID | 名称 | 图标 | 说明 |
-|-----|------|------|------|
-| insurance | 保险学院 | 🛡️ | 保险条款、理赔 |
-| law | 法律学院 | ⚖️ | 合同、法律常识 |
-| medical | 医疗学院 | 🏥 | 健康科普 |
-| education | 教育学院 | 📚 | 家庭教育 |
-| finance | 金融学院 | 💰 | 理财投资 |
-| tech | 科技学院 | 💻 | AI工具、效率 |
-
-### 添加新分类
-
-编辑 `src/types/course.ts`：
-
-```typescript
-export type CourseCategory = 
-  | 'insurance' 
-  | 'law' 
-  | 'medical' 
-  | 'education'
-  | 'finance'
-  | 'tech'
-  | 'new-category';  // 添加新分类
-
-export const CATEGORIES: CategoryInfo[] = [
-  // ... 现有分类
-  {
-    id: 'new-category',
-    name: '新分类名称',
-    icon: '🎯',
-    description: '分类描述',
-    color: 'bg-pink-500'  // Tailwind 颜色类
-  }
-];
-```
-
----
-
-## 🔧 课程数据字段说明
+### 课程字段
 
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| id | string | ✅ | 唯一标识，格式：`分类-序号` |
+| id | string | ✅ | 唯一ID，格式：`分类-序号` |
 | title | string | ✅ | 课程标题 |
-| description | string | ✅ | 课程描述（建议50-100字） |
+| description | string | ✅ | 课程描述 |
 | coverImage | string | ✅ | 封面图片URL |
 | category | string | ✅ | 分类ID |
-| tags | string[] | ✅ | 标签（建议2-5个） |
-| duration | string | ✅ | 时长（如：15分钟） |
-| lessons | number | ✅ | 课时数 |
+| tags | string[] | ✅ | 标签数组 |
+| totalDuration | string | ✅ | 总时长（如：1小时40分钟） |
+| chapters | Chapter[] | ✅ | 章节数组 |
+| isFree | boolean | ✅ | 是否免费 |
+| createdAt | string | ✅ | 创建日期 |
+| views | number | ✅ | 浏览量 |
+
+### 章节字段
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | string | ✅ | 章节ID，格式：`课程ID-ch序号` |
+| title | string | ✅ | 章节标题 |
+| duration | string | ✅ | 时长 |
 | openmaicUrl | string | ✅ | OpenMAIC完整链接 |
 | openmaicId | string | ✅ | OpenMAIC ID |
-| isFree | boolean | ✅ | 是否免费 |
-| createdAt | string | ✅ | 创建日期（YYYY-MM-DD） |
-| views | number | ✅ | 浏览量（初始为0） |
 
 ---
 
-## 📝 完整示例：添加 OpenClaw 课程
+## 🎨 ID命名规范
+
+### 课程ID
+- 格式：`分类-序号`
+- 示例：
+  - `tech-001` - 科技学院第1门课
+  - `insurance-005` - 保险学院第5门课
+
+### 章节ID
+- 格式：`课程ID-ch序号`
+- 示例：
+  - `tech-001-ch1` - 第1集
+  - `tech-001-ch2` - 第2集
+  - `tech-001-ch7` - 第7集
+
+---
+
+## 🔧 完整示例：添加新课程
+
+### 示例：添加"OpenClaw MCP协议"课程
 
 ```typescript
-// src/data/courses.ts
+// 在 src/data/courses.ts 的 courses 数组中添加
 
-export const courses: Course[] = [
-  // ... 现有课程
-  
-  // OpenClaw 入门课程
-  {
-    id: 'tech-002',
-    title: 'OpenClaw入门：打造你的AI助手',
-    description: '从零开始学习OpenClaw，了解AI Agent架构、技能系统、记忆管理等核心概念，快速上手打造专属AI助手。',
-    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
-    category: 'tech',
-    tags: ['OpenClaw', 'AI Agent', '入门'],
-    duration: '25分钟',
-    lessons: 8,
-    openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID_HERE',
-    openmaicId: 'YOUR_ID_HERE',
-    isFree: true,
-    createdAt: '2026-03-24',
-    views: 0
-  },
-  
-  // OpenClaw 进阶课程
-  {
-    id: 'tech-003',
-    title: 'OpenClaw进阶：自定义技能开发',
-    description: '深入学习OpenClaw技能系统，从零开发自定义技能，掌握技能生命周期、工具集成等高级特性。',
-    coverImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400',
-    category: 'tech',
-    tags: ['OpenClaw', '技能开发', '进阶'],
-    duration: '30分钟',
-    lessons: 12,
-    openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID_HERE',
-    openmaicId: 'YOUR_ID_HERE',
-    isFree: false,
-    createdAt: '2026-03-25',
-    views: 0
-  },
-];
+{
+  id: 'tech-004',
+  title: 'OpenClaw MCP协议实战',
+  description: '学习MCP协议在OpenClaw中的应用，掌握工具标准化集成方法。',
+  coverImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400',
+  category: 'tech',
+  tags: ['OpenClaw', 'MCP', '进阶'],
+  totalDuration: '45分钟',
+  chapters: [
+    {
+      id: 'tech-004-ch1',
+      title: '第1集：MCP协议概述',
+      duration: '15分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID_1',
+      openmaicId: 'YOUR_ID_1'
+    },
+    {
+      id: 'tech-004-ch2',
+      title: '第2集：配置MCP服务器',
+      duration: '15分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID_2',
+      openmaicId: 'YOUR_ID_2'
+    },
+    {
+      id: 'tech-004-ch3',
+      title: '第3集：实战：接入外部API',
+      duration: '15分钟',
+      openmaicUrl: 'https://open.maic.chat/classroom/YOUR_ID_3',
+      openmaicId: 'YOUR_ID_3'
+    }
+  ],
+  isFree: false,
+  createdAt: '2026-03-25',
+  views: 0
+}
 ```
 
 ---
 
-## 🖼️ 封面图片获取
+## 🖼️ 封面图片
 
-### 推荐：Unsplash API
-```typescript
-// 格式：https://images.unsplash.com/photo-XXX?w=400
-// w=400 表示宽度400px
+### 推荐：Unsplash
+```
+格式：https://images.unsplash.com/photo-XXX?w=400
 ```
 
-### 分类封面推荐关键词
-| 分类 | 关键词 |
-|------|--------|
-| insurance | insurance, document, protection |
+### 分类关键词
+| 分类 | 搜索关键词 |
+|------|-----------|
+| tech | coding, computer, AI, technology |
+| insurance | document, protection, business |
 | law | law, justice, contract |
-| medical | medical, health, doctor |
-| education | education, learning, books |
+| medical | health, medical, doctor |
+| education | learning, books, study |
 | finance | finance, money, investment |
-| tech | technology, computer, coding |
+
+---
+
+## 📺 视频播放功能
+
+### 支持的功能
+- ✅ **全屏播放**：用户可点击全屏按钮
+- ✅ **章节切换**：点击目录切换不同章节
+- ✅ **防查看源码**：禁用右键、F12等快捷键
+
+### 全屏提示
+播放器右下角显示"支持全屏播放"提示
 
 ---
 
 ## 🚀 更新流程
 
-### 1. 本地测试
 ```bash
-cd /Users/alpha/Documents/learn/openclaw_project/ai-course-platform
+# 1. 编辑课程数据
+vim src/data/courses.ts
+
+# 2. 本地测试
 npm run dev
-# 访问 http://localhost:3000 预览
-```
+# 访问 http://localhost:3000
 
-### 2. 构建验证
-```bash
+# 3. 构建验证
 npm run build
-# 确保没有错误
-```
 
-### 3. 提交代码
-```bash
+# 4. 提交推送
 git add .
-git commit -m "feat: 添加OpenClaw入门课程"
+git commit -m "feat: 添加OpenClaw MCP协议课程"
 git push
+
+# 5. Vercel自动部署
+# 等待1-2分钟
 ```
 
-### 4. 自动部署
-- Vercel 会自动检测 GitHub 推送
-- 无需手动操作，等待 1-2 分钟即可
+---
+
+## 📊 当前课程统计
+
+| 分类 | 课程数 | 总集数 |
+|------|--------|--------|
+| 科技学院 | 3 | 11集 |
+| 保险学院 | 3 | 3集 |
+| 法律学院 | 1 | 1集 |
+| 医疗学院 | 1 | 1集 |
+| 教育学院 | 1 | 1集 |
+| 金融学院 | 1 | 1集 |
+| **合计** | **10** | **18集** |
 
 ---
 
-## 📊 课程运营建议
+## ❓ 常见问题
 
-### 课程命名规范
-- 格式：`[主题] + [类型]`
-- 示例：
-  - ✅ OpenClaw入门教程
-  - ✅ 保险条款解读指南
-  - ❌ OpenClaw课程1
-  - ❌ 保险相关内容
+### Q: 如何添加单集课程？
+A: chapters 数组只放一个元素即可
 
-### 描述规范
-- 长度：50-100字
-- 包含：课程价值 + 目标人群 + 核心内容
+### Q: 如何调整章节顺序？
+A: 修改 chapters 数组的顺序
 
-### 标签规范
-- 数量：2-5个
-- 格式：关键词、不含特殊字符
-- 示例：`['OpenClaw', 'AI Agent', '入门']`
+### Q: 如何删除章节？
+A: 删除 chapters 数组中对应的元素
+
+### Q: OpenMAIC ID 如何获取？
+A: 从 OpenMAIC 生成的课程链接中提取，如 `https://open.maic.chat/classroom/NDhykLWoPn` 的 ID 是 `NDhykLWoPn`
 
 ---
 
-## 🔍 常见问题
+## 📞 文件位置
 
-### Q: 课程不显示？
-A: 检查 `id` 是否唯一，`category` 是否正确
-
-### Q: 封面图片不显示？
-A: 确保图片 URL 可访问，建议使用 HTTPS
-
-### Q: OpenMAIC 链接不加载？
-A: 检查 `openmaicUrl` 是否正确，确认链接可公开访问
-
----
-
-## 📞 维护联系
-
-- 项目路径：`/Users/alpha/Documents/learn/openclaw_project/ai-course-platform`
-- 数据文件：`src/data/courses.ts`
-- 类型定义：`src/types/course.ts`
+```
+/Users/alpha/Documents/learn/openclaw_project/ai-course-platform/
+├── src/data/courses.ts        # 课程数据
+├── src/types/course.ts        # 类型定义
+└── docs/MAINTENANCE.md        # 本手册
+```

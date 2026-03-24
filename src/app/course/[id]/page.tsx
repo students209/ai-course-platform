@@ -1,15 +1,18 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { getCourseById, getCoursesByCategory } from '@/data/courses';
 import { CATEGORIES } from '@/types/course';
 import CourseCard from '@/components/CourseCard';
-import { ArrowLeft, Clock, BookOpen, Eye, Tag, Calendar } from 'lucide-react';
+import { ArrowLeft, Clock, BookOpen, Eye, Tag, Calendar, Play, CheckCircle, Maximize2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function CoursePage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const courseId = params.id as string;
+  const chapterParam = searchParams.get('ch') || '0';
   
   const course = getCourseById(courseId);
 
@@ -30,6 +33,10 @@ export default function CoursePage() {
   const relatedCourses = getCoursesByCategory(course.category)
     .filter(c => c.id !== course.id)
     .slice(0, 3);
+
+  // 当前播放章节
+  const currentChapterIndex = parseInt(chapterParam);
+  const currentChapter = course.chapters[currentChapterIndex] || course.chapters[0];
 
   return (
     <div className="min-h-screen bg-gray-50 no-select">
@@ -57,21 +64,84 @@ export default function CoursePage() {
             {/* Video Player */}
             <div className="bg-black rounded-lg overflow-hidden aspect-video mb-6 relative">
               <iframe
-                src={course.openmaicUrl}
+                src={currentChapter.openmaicUrl}
                 className="w-full h-full"
                 frameBorder="0"
                 allowFullScreen
-                sandbox="allow-scripts allow-same-origin allow-forms"
+                allow="fullscreen"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
               />
               {/* 防护遮罩 */}
               <div 
                 className="absolute inset-0 pointer-events-none"
                 onContextMenu={(e) => e.preventDefault()}
               />
+              {/* 全屏提示 */}
+              <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded flex items-center gap-1">
+                <Maximize2 className="w-3 h-3" />
+                支持全屏播放
+              </div>
+            </div>
+
+            {/* Current Chapter Info */}
+            <div className="bg-white rounded-lg p-4 mb-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
+                {currentChapter.title}
+              </h2>
+              <div className="flex items-center text-sm text-gray-500">
+                <Clock className="w-4 h-4 mr-1" />
+                {currentChapter.duration}
+                <span className="mx-2">•</span>
+                第 {currentChapterIndex + 1} / {course.chapters.length} 集
+              </div>
+            </div>
+
+            {/* Chapter List */}
+            <div className="bg-white rounded-lg p-6 mb-6">
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2" />
+                课程目录
+              </h3>
+              <div className="space-y-2">
+                {course.chapters.map((chapter, index) => (
+                  <Link
+                    key={chapter.id}
+                    href={`/course/${course.id}?ch=${index}`}
+                    className={`flex items-center justify-between p-3 rounded-lg transition-colors ${
+                      index === currentChapterIndex
+                        ? 'bg-blue-50 border border-blue-200'
+                        : 'hover:bg-gray-50 border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
+                        index === currentChapterIndex
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-200 text-gray-600'
+                      }`}>
+                        {index === currentChapterIndex ? (
+                          <Play className="w-4 h-4" />
+                        ) : (
+                          index + 1
+                        )}
+                      </div>
+                      <span className={`${
+                        index === currentChapterIndex ? 'text-blue-600 font-medium' : 'text-gray-700'
+                      }`}>
+                        {chapter.title}
+                      </span>
+                    </div>
+                    <span className="text-sm text-gray-400 flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      {chapter.duration}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Course Info */}
-            <div className="bg-white rounded-lg p-6 mb-6">
+            <div className="bg-white rounded-lg p-6">
               <div className="flex items-start justify-between mb-4">
                 <h1 className="text-2xl font-bold text-gray-900">{course.title}</h1>
                 {course.isFree && (
@@ -87,11 +157,11 @@ export default function CoursePage() {
               <div className="flex flex-wrap gap-6 text-sm text-gray-500">
                 <span className="flex items-center">
                   <Clock className="w-4 h-4 mr-2" />
-                  时长：{course.duration}
+                  总时长：{course.totalDuration}
                 </span>
                 <span className="flex items-center">
                   <BookOpen className="w-4 h-4 mr-2" />
-                  {course.lessons} 节课
+                  {course.chapters.length} 集
                 </span>
                 <span className="flex items-center">
                   <Eye className="w-4 h-4 mr-2" />
@@ -158,7 +228,7 @@ export default function CoursePage() {
                           <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2">
                             {related.title}
                           </h4>
-                          <p className="text-xs text-gray-500 mt-1">{related.duration}</p>
+                          <p className="text-xs text-gray-500 mt-1">{related.totalDuration} • {related.chapters.length}集</p>
                         </div>
                       </div>
                     </Link>

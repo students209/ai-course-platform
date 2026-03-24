@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Course, CATEGORIES } from '@/types/course';
 import { Play, Clock, BookOpen } from 'lucide-react';
 
@@ -9,6 +8,7 @@ interface CourseCardProps {
 
 export default function CourseCard({ course }: CourseCardProps) {
   const category = CATEGORIES.find(c => c.id === course.category);
+  const chapterCount = course.chapters.length;
 
   return (
     <Link href={`/course/${course.id}`} className="group">
@@ -26,6 +26,10 @@ export default function CourseCard({ course }: CourseCardProps) {
               免费
             </span>
           )}
+          {/* Chapter Count Badge */}
+          <span className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+            {chapterCount}集
+          </span>
           {/* Play Button */}
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
             <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center">
@@ -57,11 +61,11 @@ export default function CourseCard({ course }: CourseCardProps) {
           <div className="flex items-center text-sm text-gray-400 space-x-4">
             <span className="flex items-center">
               <Clock className="w-4 h-4 mr-1" />
-              {course.duration}
+              {course.totalDuration}
             </span>
             <span className="flex items-center">
               <BookOpen className="w-4 h-4 mr-1" />
-              {course.lessons}节
+              {chapterCount}集
             </span>
           </div>
 
