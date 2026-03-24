@@ -121,6 +121,27 @@ export const courses: Course[] = [
     createdAt: '2026-03-24',
     views: 3456
   },
+  {
+    id: 'tech-004',
+    title: 'OpenClaw教学视频系列：第1期入门基础',
+    description: '从零开始学习OpenClaw，第1期共7集。AI Agent概念、OpenClaw介绍、安装部署、任务创建、技能市场、平台接入、实战项目。',
+    coverImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400',
+    category: 'tech',
+    tags: ['OpenClaw', 'AI Agent', '入门', '教学视频'],
+    totalDuration: '20分钟',
+    chapters: [
+      {
+        id: 'tech-004-ch1',
+        title: '第1集：什么是 AI Agent？',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/hK9zOl1gvp',
+        openmaicId: 'hK9zOl1gvp'
+      }
+    ],
+    isFree: true,
+    createdAt: '2026-03-24',
+    views: 0
+  },
   
   // ============ 保险学院 ============
   {
