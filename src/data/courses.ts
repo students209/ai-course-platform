@@ -24,6 +24,13 @@ export const courses: Course[] = [
         duration: '20分钟',
         openmaicUrl: 'https://open.maic.chat/classroom/H_qIARle9Q',
         openmaicId: 'H_qIARle9Q'
+      },
+      {
+        id: 'tech-004-ch3',
+        title: '第3集：界面与架构',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/NZRvFZse3E',
+        openmaicId: 'NZRvFZse3E'
       }
     ],
     isFree: true,
