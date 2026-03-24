@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { getCourseById, getCoursesByCategory } from '@/data/courses';
 import { CATEGORIES } from '@/types/course';
 import CourseCard from '@/components/CourseCard';
-import { ArrowLeft, Clock, BookOpen, Eye, Tag, Calendar, Play, CheckCircle, Maximize2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { ArrowLeft, Clock, BookOpen, Eye, Tag, Calendar, Play, CheckCircle, Maximize2, Minimize2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function CoursePage() {
   const params = useParams();
@@ -15,6 +15,36 @@ export default function CoursePage() {
   const chapterParam = searchParams.get('ch') || '0';
   
   const course = getCourseById(courseId);
+  const playerRef = useRef<HTMLDivElement>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // 全屏切换
+  const toggleFullscreen = () => {
+    if (!playerRef.current) return;
+
+    if (!document.fullscreenElement) {
+      playerRef.current.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch(err => {
+        console.error('全屏失败:', err);
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        setIsFullscreen(false);
+      });
+    }
+  };
+
+  // 监听全屏变化
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   if (!course) {
     return (
@@ -61,26 +91,31 @@ export default function CoursePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            {/* Video Player */}
-            <div className="bg-black rounded-lg overflow-hidden aspect-video mb-6 relative">
+            {/* Video Player Container */}
+            <div 
+              ref={playerRef}
+              className="bg-black rounded-lg overflow-hidden aspect-video mb-6 relative"
+            >
               <iframe
                 src={currentChapter.openmaicUrl}
                 className="w-full h-full"
                 frameBorder="0"
                 allowFullScreen
                 allow="fullscreen"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
               />
-              {/* 防护遮罩 */}
-              <div 
-                className="absolute inset-0 pointer-events-none"
-                onContextMenu={(e) => e.preventDefault()}
-              />
-              {/* 全屏提示 */}
-              <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded flex items-center gap-1">
-                <Maximize2 className="w-3 h-3" />
-                支持全屏播放
-              </div>
+              
+              {/* 全屏按钮 */}
+              <button
+                onClick={toggleFullscreen}
+                className="absolute bottom-4 right-4 bg-black/60 hover:bg-black/80 text-white p-2 rounded-lg transition-colors flex items-center gap-1 z-10"
+                title={isFullscreen ? "退出全屏" : "全屏播放"}
+              >
+                {isFullscreen ? (
+                  <Minimize2 className="w-5 h-5" />
+                ) : (
+                  <Maximize2 className="w-5 h-5" />
+                )}
+              </button>
             </div>
 
             {/* Current Chapter Info */}
