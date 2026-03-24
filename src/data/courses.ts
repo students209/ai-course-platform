@@ -3,132 +3,13 @@ import { Course } from '@/types/course';
 export const courses: Course[] = [
   // ============ 科技学院 ============
   {
-    id: 'tech-001',
-    title: 'OpenClaw入门教程',
-    description: '从零开始学习OpenClaw，了解AI Agent架构、技能系统、记忆管理等核心概念。本系列共7集，帮助你快速上手打造专属AI助手。',
-    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
-    category: 'tech',
-    tags: ['OpenClaw', 'AI Agent', '入门'],
-    totalDuration: '1小时40分钟',
-    chapters: [
-      {
-        id: 'tech-001-ch1',
-        title: '第1集：OpenClaw是什么',
-        duration: '15分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch2',
-        title: '第2集：安装与部署',
-        duration: '12分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch3',
-        title: '第3集：核心概念',
-        duration: '18分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch4',
-        title: '第4集：技能系统详解',
-        duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch5',
-        title: '第5集：记忆管理系统',
-        duration: '15分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch6',
-        title: '第6集：实战案例',
-        duration: '10分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-001-ch7',
-        title: '第7集：进阶技巧与总结',
-        duration: '10分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      }
-    ],
-    isFree: true,
-    createdAt: '2026-03-24',
-    views: 567
-  },
-  {
-    id: 'tech-002',
-    title: 'OpenClaw进阶：自定义技能开发',
-    description: '深入学习OpenClaw技能系统，从零开发自定义技能，掌握技能生命周期、工具集成、MCP协议等高级特性。',
-    coverImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400',
-    category: 'tech',
-    tags: ['OpenClaw', '技能开发', '进阶'],
-    totalDuration: '45分钟',
-    chapters: [
-      {
-        id: 'tech-002-ch1',
-        title: '第1集：技能架构概述',
-        duration: '15分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-002-ch2',
-        title: '第2集：创建第一个技能',
-        duration: '15分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      },
-      {
-        id: 'tech-002-ch3',
-        title: '第3集：工具集成与MCP协议',
-        duration: '15分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      }
-    ],
-    isFree: false,
-    createdAt: '2026-03-25',
-    views: 234
-  },
-  {
-    id: 'tech-003',
-    title: 'ChatGPT实战应用指南',
-    description: '如何使用ChatGPT提升工作效率？写作、编程、翻译、数据分析...解锁AI工具的10种用法。',
-    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
-    category: 'tech',
-    tags: ['AI', 'ChatGPT', '效率工具'],
-    totalDuration: '20分钟',
-    chapters: [
-      {
-        id: 'tech-003-ch1',
-        title: 'ChatGPT基础操作与高效提问技巧',
-        duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-        openmaicId: 'NDhykLWoPn'
-      }
-    ],
-    isFree: false,
-    createdAt: '2026-03-24',
-    views: 3456
-  },
-  {
     id: 'tech-004',
     title: 'OpenClaw教学视频系列：第1期入门基础',
     description: '从零开始学习OpenClaw，第1期共7集。AI Agent概念、OpenClaw介绍、安装部署、任务创建、技能市场、平台接入、实战项目。',
     coverImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400',
     category: 'tech',
-    tags: ['OpenClaw', 'AI Agent', '入门', '教学视频'],
-    totalDuration: '20分钟',
+    tags: ['OpenClaw', 'AI Agent', '入门', '教学视频', '第1期'],
+    totalDuration: '40分钟',
     chapters: [
       {
         id: 'tech-004-ch1',
@@ -136,6 +17,13 @@ export const courses: Course[] = [
         duration: '20分钟',
         openmaicUrl: 'https://open.maic.chat/classroom/hK9zOl1gvp',
         openmaicId: 'hK9zOl1gvp'
+      },
+      {
+        id: 'tech-004-ch2',
+        title: '第2集：环境准备与安装',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/H_qIARle9Q',
+        openmaicId: 'H_qIARle9Q'
       }
     ],
     isFree: true,
