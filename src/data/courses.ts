@@ -1,7 +1,55 @@
 import { Course } from '@/types/course';
 
 export const courses: Course[] = [
-  // 保险学院
+  // ============ 科技学院 ============
+  // OpenClaw 课程系列
+  {
+    id: 'tech-001',
+    title: 'AI工具效率提升：ChatGPT实战应用',
+    description: '如何使用ChatGPT提升工作效率？写作、编程、翻译、数据分析...解锁AI工具的10种用法。',
+    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
+    category: 'tech',
+    tags: ['AI', 'ChatGPT', '效率工具'],
+    duration: '20分钟',
+    lessons: 8,
+    openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
+    openmaicId: 'NDhykLWoPn',
+    isFree: false,
+    createdAt: '2026-03-24',
+    views: 3456
+  },
+  {
+    id: 'tech-002',
+    title: 'OpenClaw入门：打造你的AI助手',
+    description: '从零开始学习OpenClaw，了解AI Agent架构、技能系统、记忆管理等核心概念，快速上手打造专属AI助手。',
+    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
+    category: 'tech',
+    tags: ['OpenClaw', 'AI Agent', '入门'],
+    duration: '25分钟',
+    lessons: 10,
+    openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
+    openmaicId: 'NDhykLWoPn',
+    isFree: true,
+    createdAt: '2026-03-24',
+    views: 567
+  },
+  {
+    id: 'tech-003',
+    title: 'OpenClaw进阶：自定义技能开发',
+    description: '深入学习OpenClaw技能系统，从零开发自定义技能，掌握技能生命周期、工具集成、MCP协议等高级特性。',
+    coverImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400',
+    category: 'tech',
+    tags: ['OpenClaw', '技能开发', '进阶'],
+    duration: '30分钟',
+    lessons: 12,
+    openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
+    openmaicId: 'NDhykLWoPn',
+    isFree: false,
+    createdAt: '2026-03-25',
+    views: 234
+  },
+  
+  // ============ 保险学院 ============
   {
     id: 'insurance-001',
     title: '平安福2025条款深度解读',
@@ -48,7 +96,7 @@ export const courses: Course[] = [
     views: 2567
   },
   
-  // 法律学院
+  // ============ 法律学院 ============
   {
     id: 'law-001',
     title: '劳动合同避坑指南',
@@ -80,7 +128,7 @@ export const courses: Course[] = [
     views: 756
   },
   
-  // 医疗学院
+  // ============ 医疗学院 ============
   {
     id: 'medical-001',
     title: '体检报告解读：看懂你的健康数据',
@@ -97,7 +145,7 @@ export const courses: Course[] = [
     views: 1890
   },
   
-  // 教育学院
+  // ============ 教育学院 ============
   {
     id: 'education-001',
     title: '高效学习方法：费曼学习法',
@@ -114,7 +162,7 @@ export const courses: Course[] = [
     views: 2234
   },
   
-  // 金融学院
+  // ============ 金融学院 ============
   {
     id: 'finance-001',
     title: '基金投资入门指南',
@@ -129,23 +177,6 @@ export const courses: Course[] = [
     isFree: true,
     createdAt: '2026-03-20',
     views: 1678
-  },
-  
-  // 科技学院
-  {
-    id: 'tech-001',
-    title: 'AI工具效率提升：ChatGPT实战应用',
-    description: '如何使用ChatGPT提升工作效率？写作、编程、翻译、数据分析...解锁AI工具的10种用法。',
-    coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400',
-    category: 'tech',
-    tags: ['AI', 'ChatGPT', '效率工具'],
-    duration: '20分钟',
-    lessons: 8,
-    openmaicUrl: 'https://open.maic.chat/classroom/NDhykLWoPn',
-    openmaicId: 'NDhykLWoPn',
-    isFree: false,
-    createdAt: '2026-03-24',
-    views: 3456
   }
 ];
 
