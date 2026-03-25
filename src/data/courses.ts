@@ -9,7 +9,7 @@ export const courses: Course[] = [
     coverImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400',
     category: 'tech',
     tags: ['OpenClaw', 'AI Agent', '入门', '教学视频', '第1期'],
-    totalDuration: '40分钟',
+    totalDuration: '140分钟',
     chapters: [
       {
         id: 'tech-004-ch1',
@@ -22,43 +22,43 @@ export const courses: Course[] = [
         id: 'tech-004-ch2',
         title: '第2集：环境准备与安装',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/9n8ziaws4h',
-        openmaicId: '9n8ziaws4h'
+        openmaicUrl: 'https://open.maic.chat/classroom/k8oukL8fr5',
+        openmaicId: 'k8oukL8fr5'
       },
       {
         id: 'tech-004-ch3',
         title: '第3集：界面与架构',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NZRvFZse3E',
-        openmaicId: 'NZRvFZse3E'
+        openmaicUrl: 'https://open.maic.chat/classroom/TTf0TVLRV8',
+        openmaicId: 'TTf0TVLRV8'
       },
       {
         id: 'tech-004-ch4',
         title: '第4集：配置 AI 模型',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/sGmxyncFvz',
-        openmaicId: 'sGmxyncFvz'
+        openmaicUrl: 'https://open.maic.chat/classroom/MH-SmdEc_b',
+        openmaicId: 'MH-SmdEc_b'
       },
       {
         id: 'tech-004-ch5',
         title: '第5集：创建第一个任务',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/NEP5GXMKeQ',
-        openmaicId: 'NEP5GXMKeQ'
+        openmaicUrl: 'https://open.maic.chat/classroom/yyg1n-Pw--',
+        openmaicId: 'yyg1n-Pw--'
       },
       {
         id: 'tech-004-ch6',
         title: '第6集：首次对话测试',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/VHhFWS1fkr',
-        openmaicId: 'VHhFWS1fkr'
+        openmaicUrl: 'https://open.maic.chat/classroom/q8nyGN8i0m',
+        openmaicId: 'q8nyGN8i0m'
       },
       {
         id: 'tech-004-ch7',
         title: '第7集：7天学习路径总结',
         duration: '20分钟',
-        openmaicUrl: 'https://open.maic.chat/classroom/fOJzSAY0XP',
-        openmaicId: 'fOJzSAY0XP'
+        openmaicUrl: 'https://open.maic.chat/classroom/PGlvsRa08L',
+        openmaicId: 'PGlvsRa08L'
       }
     ],
     isFree: true,
