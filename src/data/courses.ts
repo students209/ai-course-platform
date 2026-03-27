@@ -68,6 +68,49 @@ export const courses: Course[] = [
   
   // ============ 保险学院 ============
   {
+    id: 'tech-005',
+    title: 'OpenClaw教学视频系列：第2期技能系统',
+    description: '第2期共4集，深入讲解OpenClaw技能系统、记忆系统、MCP协议集成、自动化工作流等核心功能。',
+    coverImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400',
+    category: 'tech',
+    tags: ['OpenClaw', 'AI Agent', '技能系统', '教学视频', '第2期'],
+    totalDuration: '80分钟',
+    chapters: [
+      {
+        id: 'tech-005-ch1',
+        title: '第1集：技能系统详解',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/bKolLmrAGo',
+        openmaicId: 'bKolLmrAGo'
+      },
+      {
+        id: 'tech-005-ch2',
+        title: '第2集：记忆系统使用',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/r7dnbDsriW',
+        openmaicId: 'r7dnbDsriW'
+      },
+      {
+        id: 'tech-005-ch3',
+        title: '第3集：MCP协议集成',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/J59UsqQ5bu',
+        openmaicId: 'J59UsqQ5bu'
+      },
+      {
+        id: 'tech-005-ch4',
+        title: '第4集：自动化工作流',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/liSWQdsON9',
+        openmaicId: 'liSWQdsON9'
+      }
+    ],
+    isFree: true,
+    createdAt: '2026-03-27',
+    views: 0
+  },
+  
+  {
     id: 'insurance-001',
     title: '平安福2025条款深度解读',
     description: '全面解读平安福2025保险条款，包括保障范围、除外责任、理赔要点等核心内容。',
