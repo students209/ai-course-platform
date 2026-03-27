@@ -110,6 +110,57 @@ export const courses: Course[] = [
     views: 0
   },
   
+  // ============ 第3期：平台接入 ============
+  {
+    id: 'tech-006',
+    title: 'OpenClaw教学视频系列：第3期平台接入',
+    description: '第3期共5集，讲解OpenClaw如何接入Discord、Telegram、飞书、企业微信等多平台，实现统一消息管理。',
+    coverImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400',
+    category: 'tech',
+    tags: ['OpenClaw', 'AI Agent', '平台接入', 'Discord', 'Telegram', '教学视频', '第3期'],
+    totalDuration: '100分钟',
+    chapters: [
+      {
+        id: 'tech-006-ch1',
+        title: '第1集：平台接入概述',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/xpVg-QrH9I',
+        openmaicId: 'xpVg-QrH9I'
+      },
+      {
+        id: 'tech-006-ch2',
+        title: '第2集：Discord接入',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/iuHoBv2ijo',
+        openmaicId: 'iuHoBv2ijo'
+      },
+      {
+        id: 'tech-006-ch3',
+        title: '第3集：Telegram接入',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/JRsdZJqJ5N',
+        openmaicId: 'JRsdZJqJ5N'
+      },
+      {
+        id: 'tech-006-ch4',
+        title: '第4集：飞书/企业微信接入',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/tljYX7kGIC',
+        openmaicId: 'tljYX7kGIC'
+      },
+      {
+        id: 'tech-006-ch5',
+        title: '第5集：多平台管理',
+        duration: '20分钟',
+        openmaicUrl: 'https://open.maic.chat/classroom/BZgyQeF4d5',
+        openmaicId: 'BZgyQeF4d5'
+      }
+    ],
+    isFree: true,
+    createdAt: '2026-03-27',
+    views: 0
+  },
+  
   {
     id: 'insurance-001',
     title: '平安福2025条款深度解读',
